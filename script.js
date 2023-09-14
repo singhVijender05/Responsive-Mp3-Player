@@ -28,7 +28,92 @@ const songs=[
         songImg:"musiclogo.png",
         songName:"Heeriye ni",
         songPath:"music/3.mp3",
-    }
+    },
+    {
+        songImg:"musiclogo.png",
+        songName:"Hey babe",
+        songPath:"music/2.mp3",
+    },
+    {
+        songImg:"musiclogo.png",
+        songName:"Hey babe",
+        songPath:"music/2.mp3",
+    },
+    {
+        songImg:"musiclogo.png",
+        songName:"Hey babe",
+        songPath:"music/2.mp3",
+    },
+    {
+        songImg:"musiclogo.png",
+        songName:"Hey babe",
+        songPath:"music/2.mp3",
+    },
+    {
+        songImg:"musiclogo.png",
+        songName:"Hey babe",
+        songPath:"music/2.mp3",
+    },
+    {
+        songImg:"musiclogo.png",
+        songName:"Hey babe",
+        songPath:"music/2.mp3",
+    },
+    {
+        songImg:"musiclogo.png",
+        songName:"Hey babe",
+        songPath:"music/2.mp3",
+    },
+    {
+        songImg:"musiclogo.png",
+        songName:"Hey babe",
+        songPath:"music/2.mp3",
+    },
+    {
+        songImg:"musiclogo.png",
+        songName:"Hey babe",
+        songPath:"music/2.mp3",
+    },
+    {
+        songImg:"musiclogo.png",
+        songName:"Hey babe",
+        songPath:"music/2.mp3",
+    },
+    {
+        songImg:"musiclogo.png",
+        songName:"Hey babe",
+        songPath:"music/2.mp3",
+    },
+    {
+        songImg:"musiclogo.png",
+        songName:"Hey babe",
+        songPath:"music/2.mp3",
+    },
+    {
+        songImg:"musiclogo.png",
+        songName:"Hey babe",
+        songPath:"music/2.mp3",
+    },
+    {
+        songImg:"musiclogo.png",
+        songName:"Hey babe",
+        songPath:"music/2.mp3",
+    },
+    {
+        songImg:"musiclogo.png",
+        songName:"Hey babe",
+        songPath:"music/2.mp3",
+    },
+    {
+        songImg:"musiclogo.png",
+        songName:"Hey babe",
+        songPath:"music/2.mp3",
+    },
+    {
+        songImg:"musiclogo.png",
+        songName:"Hey babe",
+        songPath:"music/2.mp3",
+    },
 ]
 
 window.onload=()=>{
@@ -50,6 +135,9 @@ forward.addEventListener('click',()=>{
 
     songObjects[currentSongIdx].pause();
     songObjects[currentSongIdx].currentTime=0;
+    let listItemByidx=findListItemByIdx(currentSongIdx)
+    listItemByidx.classList.remove('fa-pause')
+    listItemByidx.classList.add('fa-play')
 
     if (currentSongIdx < songObjects.length - 1) {
         currentSongIdx++;
@@ -64,6 +152,9 @@ backBtn.addEventListener('click',()=>{
     
     songObjects[currentSongIdx].pause();
     songObjects[currentSongIdx].currentTime=0;
+    let listItemByidx=findListItemByIdx(currentSongIdx)
+    listItemByidx.classList.remove('fa-pause')
+    listItemByidx.classList.add('fa-play')
     if(currentSongIdx>0){
         currentSongIdx--
     }
@@ -72,9 +163,8 @@ backBtn.addEventListener('click',()=>{
     }  
     masterPlay(currentSongIdx)
 })
-setInterval(()=>{
-    updateSeekbar(currentSongIdx)
-},500)
+
+
 
 seekbar.addEventListener('click',(e)=>{
     onClickProgressbar(currentSongIdx)
@@ -92,20 +182,21 @@ function createAudioObjects(){
             // Update the list item's duration when metadata is loaded
             songsList.childNodes[i].lastChild.previousSibling.innerHTML=formatDuration(songObjects[i].duration)
         });
+        audio.addEventListener('timeupdate',()=>{
+            updateSeekbar(currentSongIdx)
+        })
         songsList.innerHTML+=listSongHtml(songs[i].songImg,songs[i].songName,i)
    }
 }
 
 
 
-// songObjects[currentSongIdx].ontimeupdate = function() {
-//     updateSeekbar(currentSongIdx);
-// };
+
 
 
 function onClickProgressbar(idx){
     const progress=seekbar.value
-    songObjects[idx].currentTime=Math.floor((progress*songObjects[idx].duration)/100)
+    songObjects[idx].currentTime=Math.floor((progress*(songObjects[idx].duration))/100)
 }
 
 function masterPlay(idx){
@@ -114,14 +205,24 @@ function masterPlay(idx){
         currentSongName.innerHTML=songs[idx].songName
         playpause.classList.remove('fa-play')
         playpause.classList.add('fa-pause')
+        let listItemByidx=findListItemByIdx(idx)
+        listItemByidx.classList.remove('fa-play')
+        listItemByidx.classList.add('fa-pause')
      }
      else{
         songObjects[idx].pause()
         playpause.classList.remove('fa-pause')
         playpause.classList.add('fa-play')
+        let listItemByidx=findListItemByIdx(idx)
+        listItemByidx.classList.remove('fa-pause')
+        listItemByidx.classList.add('fa-play')
      }
 }
 
+function findListItemByIdx(idx){
+    const listItems=songsList.childNodes
+    return listItems[idx].lastElementChild.firstElementChild
+}
 
 function updateSeekbar(idx){
     seekbar.value=Math.floor((songObjects[idx].currentTime)*100/songObjects[idx].duration)
@@ -132,7 +233,6 @@ function updateSeekbar(idx){
     min=Math.floor(songObjects[idx].duration/60)
     sec=Math.floor(songObjects[idx].duration%60)
     totalTime.textContent=`${min}:${sec}`
-    console.log(totalTime.textContent)
     if(songObjects[idx].duration<=songObjects[idx].currentTime && idx<songObjects.length-1){
         //updatesong
         currentSongIdx=nextSongToPlay()
@@ -168,13 +268,11 @@ function nextSongToPlay(){
 
 function listSongHtml(imgPath,songName,idx){
     let totalDuration=songObjects[idx].duration
-    console.log(totalDuration)
     return `<li  class="flex space-x-4 text-center"><span class="p-1 "><img class="w-5 rounded-full" src="${imgPath}" alt=""></span><span>${songName}</span><span>${formatDuration(totalDuration)}</span><span onclick="handlePlayBtn(this)"><i id="listplaybtn" class="fa-solid fa-play border-[1px] rounded-full px-2 py-[5px] cursor-pointer playpause"></i></span></li>`
 }
 
 function handlePlayBtn(e){
     let name=e.parentNode.firstElementChild.nextElementSibling.innerHTML
-    console.log(name)
     for(let i=0;i<songs.length;i++){
         if(songs[i].songName===name){
             listPlay(i,e)
@@ -182,30 +280,32 @@ function handlePlayBtn(e){
         }
     }
 }
-
 function listPlay(idx,e){
     if(currentSongIdx!=idx){
         songObjects[currentSongIdx].currentTime=0
+        songObjects[currentSongIdx].pause()
+        e.parentNode.parentNode.childNodes[currentSongIdx].lastElementChild.firstElementChild.classList.remove('fa-pause')
+        e.parentNode.parentNode.childNodes[currentSongIdx].lastElementChild.firstElementChild.classList.add('fa-play')
     }
         if(e.firstElementChild.classList.contains('fa-play')){
         e.firstElementChild.classList.remove('fa-play')
         e.firstElementChild.classList.add('fa-pause')
-        console.log(e.firstElementChild.classList)
         
         currentSongIdx=idx
         songObjects[idx].play()
         playpause.classList.remove('fa-play')
         playpause.classList.add('fa-pause')
         updateSeekbar(idx)
+        currentSongName.innerHTML=songs[idx].songName
     }
     else{
         e.firstElementChild.classList.remove('fa-pause')
         e.firstElementChild.classList.add('fa-play')
-        console.log(e.firstElementChild.classList)
         currentSongIdx=idx
         songObjects[idx].pause()
         playpause.classList.remove('fa-pause')
         playpause.classList.add('fa-play')
         updateSeekbar(idx)
+        currentSongName.innerHTML=songs[idx].songName
     }
 }

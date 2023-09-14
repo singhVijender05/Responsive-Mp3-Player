@@ -3,14 +3,21 @@
 @tailwind utilities;
 
 *{
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+}
+body{
+  height: 100vh;
 }
 nav{
     background-color: rgb(22, 21, 78);
+    flex: 1;
 }
 main{
     background-image: url(audio-7276511_1920.jpg);
     background-size: cover;
+    flex:8;
 }
 ::-webkit-scrollbar {
     width: 8px; /* Adjust the width to make it narrow */
@@ -35,4 +42,5 @@ main{
 
   footer{
     background-color: rgb(22, 21, 78);
+    flex: 1;
   }
