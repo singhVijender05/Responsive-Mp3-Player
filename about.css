@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
+   
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        height: 100dvh;
+    }
+    .heading{
+        height: 80%;
+    }
+    .heading p{
+        height: 90%;
+        overflow: auto;
+    }
+  }

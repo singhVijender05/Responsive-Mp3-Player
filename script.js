@@ -9,6 +9,7 @@ const totalTime=document.getElementById('totalTime')
 const seekbar=document.getElementById("progressbar")
 const songsList=document.getElementById('listSongs')
 
+console.log(seekbar)
 const songObjects=[]
 let isShuffleOn=0
 let isRepeatOn=0
@@ -28,92 +29,7 @@ const songs=[
         songImg:"musiclogo.png",
         songName:"Heeriye ni",
         songPath:"music/3.mp3",
-    },
-    {
-        songImg:"musiclogo.png",
-        songName:"Hey babe",
-        songPath:"music/2.mp3",
-    },
-    {
-        songImg:"musiclogo.png",
-        songName:"Hey babe",
-        songPath:"music/2.mp3",
-    },
-    {
-        songImg:"musiclogo.png",
-        songName:"Hey babe",
-        songPath:"music/2.mp3",
-    },
-    {
-        songImg:"musiclogo.png",
-        songName:"Hey babe",
-        songPath:"music/2.mp3",
-    },
-    {
-        songImg:"musiclogo.png",
-        songName:"Hey babe",
-        songPath:"music/2.mp3",
-    },
-    {
-        songImg:"musiclogo.png",
-        songName:"Hey babe",
-        songPath:"music/2.mp3",
-    },
-    {
-        songImg:"musiclogo.png",
-        songName:"Hey babe",
-        songPath:"music/2.mp3",
-    },
-    {
-        songImg:"musiclogo.png",
-        songName:"Hey babe",
-        songPath:"music/2.mp3",
-    },
-    {
-        songImg:"musiclogo.png",
-        songName:"Hey babe",
-        songPath:"music/2.mp3",
-    },
-    {
-        songImg:"musiclogo.png",
-        songName:"Hey babe",
-        songPath:"music/2.mp3",
-    },
-    {
-        songImg:"musiclogo.png",
-        songName:"Hey babe",
-        songPath:"music/2.mp3",
-    },
-    {
-        songImg:"musiclogo.png",
-        songName:"Hey babe",
-        songPath:"music/2.mp3",
-    },
-    {
-        songImg:"musiclogo.png",
-        songName:"Hey babe",
-        songPath:"music/2.mp3",
-    },
-    {
-        songImg:"musiclogo.png",
-        songName:"Hey babe",
-        songPath:"music/2.mp3",
-    },
-    {
-        songImg:"musiclogo.png",
-        songName:"Hey babe",
-        songPath:"music/2.mp3",
-    },
-    {
-        songImg:"musiclogo.png",
-        songName:"Hey babe",
-        songPath:"music/2.mp3",
-    },
-    {
-        songImg:"musiclogo.png",
-        songName:"Hey babe",
-        songPath:"music/2.mp3",
-    },
+    }
 ]
 
 window.onload=()=>{
@@ -166,8 +82,9 @@ backBtn.addEventListener('click',()=>{
 
 
 
-seekbar.addEventListener('click',(e)=>{
-    onClickProgressbar(currentSongIdx)
+seekbar.onclick=()=>onClickProgressbar(currentSongIdx);
+seekbar.addEventListener('input',()=>{
+       onClickProgressbar(currentSongIdx)
 })
 
 
@@ -196,7 +113,8 @@ function createAudioObjects(){
 
 function onClickProgressbar(idx){
     const progress=seekbar.value
-    songObjects[idx].currentTime=Math.floor((progress*(songObjects[idx].duration))/100)
+    console.log(progress)
+    songObjects[idx].currentTime=Math.floor((progress*(songObjects[idx].duration))/100)+2
 }
 
 function masterPlay(idx){
