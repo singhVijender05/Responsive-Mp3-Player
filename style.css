@@ -18,6 +18,15 @@ nav{
     /* height: 10%; */
     flex: 1;
 }
+.navhome ul li:hover{
+      color: #e0e0e0;
+}
+.login button:hover{
+  background-color: #e0e0e0;
+}
+.masterBtns *{
+  cursor: pointer;
+}
 main{
     background-image: url(images/audio-7276511_1920.jpg);
     background-size: cover;
@@ -31,7 +40,7 @@ main{
   
   /* Styling the scrollbar track (background) */
   ::-webkit-scrollbar-track {
-    background: #ccc; /* Set a background color or image if needed */
+     background-color: #4468dd; /* Set a background color or image if needed */
   }
   
   /* Styling the scrollbar thumb (the draggable part) */
@@ -44,7 +53,8 @@ main{
   ::-webkit-scrollbar-thumb:hover {
     background-color: rgb(62, 59, 214); /* Change the color on hover if desired */
   }
-
+  
+  
   footer{
     background-color: rgb(22, 21, 78);
     /* height: 10%; */

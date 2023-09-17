@@ -9,7 +9,7 @@ const totalTime=document.getElementById('totalTime')
 const seekbar=document.getElementById("progressbar")
 const songsList=document.getElementById('listSongs')
 
-console.log(seekbar)
+
 const songObjects=[]
 let isShuffleOn=0
 let isRepeatOn=0
@@ -23,7 +23,7 @@ const songs=[
     {
         songImg:"images/musiclogo.png",
         songName:"Admirin You",
-        songPath:"./music/Guli-Mata_320(PaglaSongs).mp3"
+        songPath:"./music/Admirin You (MrJatt.Im).mp3"
     },
     {
         songImg:"images/musiclogo.png",
@@ -57,9 +57,21 @@ playpause.addEventListener('click',()=>{
 })
 
 shuffle.onclick=()=>{
+    if(isShuffleOn){
+        shuffle.innerHTML='shuffle'
+    }
+    else{
+        shuffle.innerHTML='shuffle_on'
+    }
     isShuffleOn=!isShuffleOn
 }
 repeat.onclick=()=>{
+    if(isRepeatOn){
+        repeat.innerHTML='repeat'
+    }
+    else{
+        repeat.innerHTML='repeat_on'
+    }
     isRepeatOn=!isRepeatOn
 }
 
@@ -115,6 +127,7 @@ function createAudioObjects(){
             // Update the list item's duration when metadata is loaded
             songsList.childNodes[i].lastChild.previousSibling.innerHTML=formatDuration(songObjects[i].duration)
         });
+        //add audio object on event listener
         audio.addEventListener('timeupdate',()=>{
             updateSeekbar(currentSongIdx)
         })
@@ -129,7 +142,6 @@ function createAudioObjects(){
 
 function onClickProgressbar(idx){
     const progress=seekbar.value
-    console.log(progress)
     songObjects[idx].currentTime=Math.floor((progress*(songObjects[idx].duration))/100)+2
 }
 
