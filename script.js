@@ -16,20 +16,36 @@ let isRepeatOn=0
 let currentSongIdx=0
 const songs=[
     {
-        songImg:"musiclogo.png",
-        songName:"Let me love you",
-        songPath:"music/1.mp3",
+        songImg:"images/musiclogo.png",
+        songName:"Guli Mata",
+        songPath:"./music/Guli-Mata_320(PaglaSongs).mp3"
     },
     {
-        songImg:"musiclogo.png",
-        songName:"Hey babe",
-        songPath:"music/2.mp3",
+        songImg:"images/musiclogo.png",
+        songName:"Admirin You",
+        songPath:"./music/Guli-Mata_320(PaglaSongs).mp3"
     },
     {
-        songImg:"musiclogo.png",
-        songName:"Heeriye ni",
-        songPath:"music/3.mp3",
+        songImg:"images/musiclogo.png",
+        songName:"2 Gulaab",
+        songPath:"./music/Do Gulaab (MrJatt.Im).mp3"
+    },
+    {
+        songImg:"images/musiclogo.png",
+        songName:"California Love",
+        songPath:"./music/California Love (MrJatt.Im).mp3"
+    },
+    {
+        songImg:"images/musiclogo.png",
+        songName:"Cheques",
+        songPath:"./music/Cheques (MrJatt.Im).mp3"
+    },
+    {
+        songImg:"images/musiclogo.png",
+        songName:"Ishq",
+        songPath:"./music/nirvairpannu.mp3"
     }
+  
 ]
 
 window.onload=()=>{
